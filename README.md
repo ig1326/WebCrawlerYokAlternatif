@@ -3,6 +3,4 @@ Bu crawler yök akademik sayfasından Uludağ Üniversitesinden öğretim görev
 Hali hazırda tüm çekilmiş veriler tum_fakulteler_oduller.xlsx dosyasına kayıt edilmiştir.
 Bu crawlerda Fakülte bazlı öğretim üyelerini listelenmiştir.
 
-ÇOK ÖNEMLİ NOT !!!!
-tum_fakulteler_oduller.xlsx excel dosyasında ilgili öğretim görevlisinin 2024 yılına ait birden fazla ödülü olsa bile en başta gözüken ödülü yazar. Örnek vermek gerekirse İsmail Güngör 2024 yılında En iyi bilişimci ödülü , Yapay zekayı geliştirme ödülü yazıyorsa excel dosyasında
-sadece En iyi Bilişimci ödülü yazar.Yök akedemikten ilgili öğretim görevlisini aratıp 2024 yılına ait ödüllere bakmak gerekebilir.
+Test aşaması için Ankara Üniversitesi ilk 2 fakülteye bakıldı.Test başarılı. 14.05.2025 tarihinde tüm Anakara Üniversitesi için test edilecek.
