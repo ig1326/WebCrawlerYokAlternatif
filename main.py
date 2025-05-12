@@ -30,19 +30,30 @@ def click_award_menu():
         if award_items:
             for item in award_items:
                 try:
-                    year = item.find_element(By.CLASS_NAME, ".timeline-badge").text.strip()
-                    title = item.find_element(By.CSS_SELECTOR, ".timeline-title").text.strip()
-                    org = item.find_element(By.CSS_SELECTOR, ".timeline-heading small").text.strip()
+                    year_elem = item.find_elements(By.CSS_SELECTOR, ".timeline-badge")
+                    title_elem = item.find_elements(By.CSS_SELECTOR, ".timeline-title")
+                    org_elem = item.find_elements(By.CSS_SELECTOR, ".timeline-heading small")
+
+                    year = year_elem[0].text.strip() if year_elem else ""
+                    title = title_elem[0].text.strip() if title_elem else ""
+                    org = org_elem[0].text.strip() if org_elem else ""
 
                     data.append({
                         "Ad Soyad": current_name,
                         "Birim": current_faculty,
                         "Yıl": year,
-                        "Ödül Başlığı": title,
+                        "Ödül Başlığı": title if title else "Başlık bulunamadı",
                         "Kurum": org
                     })
                 except Exception as e:
-                    print(f"Hata (ödül detayı alınamadı): {e}")
+                    print(f"Ödül öğesi işlenemedi: {e}")
+                    data.append({
+                        "Ad Soyad": current_name,
+                        "Birim": current_faculty,
+                        "Yıl": "",
+                        "Ödül Başlığı": "Hata sırasında işlenemedi",
+                        "Kurum": ""
+                    })
         else:
             data.append({
                 "Ad Soyad": current_name,
@@ -51,7 +62,9 @@ def click_award_menu():
                 "Ödül Başlığı": "Ödül bulunamadı",
                 "Kurum": ""
             })
-    except:
+
+    except Exception as e:
+        print(f"Ödül sekmesine ulaşılamadı: {e}")
         data.append({
             "Ad Soyad": current_name,
             "Birim": current_faculty,
@@ -89,7 +102,7 @@ def handle_all_authors():
             break
 
 # 3. Tüm fakülteleri sırayla işle
-for i in range(len(faculty_links)):
+for i in range(min(2, len(faculty_links))):
     wait.until(EC.presence_of_element_located((By.ID, "searchlist")))
     faculty_links = driver.find_element(By.ID, "searchlist").find_elements(By.TAG_NAME, "a")
 
