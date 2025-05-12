@@ -13,8 +13,8 @@ data = []
 
 # 1. Üniversiteye git
 driver.get("https://akademik.yok.gov.tr/AkademikArama/view/universityListview.jsp")
-wait.until(EC.element_to_be_clickable((By.XPATH, "//tr[49]/td[1]/a"))).click()
-
+wait.until(EC.element_to_be_clickable((By.XPATH, "//tr[21]/td[1]/a"))).click()
+#/html/body/div/div[2]/div/table/tbody/tr[21]/td[1]/a Ankara Üniversitesi
 # 2. Fakülte bağlantılarını bul
 wait.until(EC.presence_of_element_located((By.ID, "searchlist")))
 faculty_links = driver.find_element(By.ID, "searchlist").find_elements(By.TAG_NAME, "a")
@@ -30,7 +30,7 @@ def click_award_menu():
         if award_items:
             for item in award_items:
                 try:
-                    year = item.find_element(By.CLASS_NAME, "timeline-badge").text.strip()
+                    year = item.find_element(By.CLASS_NAME, ".timeline-badge").text.strip()
                     title = item.find_element(By.CSS_SELECTOR, ".timeline-title").text.strip()
                     org = item.find_element(By.CSS_SELECTOR, ".timeline-heading small").text.strip()
 
